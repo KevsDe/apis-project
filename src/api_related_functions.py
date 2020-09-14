@@ -58,7 +58,7 @@ def house_api_id (house,key):
         return (data[house_idx].get('_id'))
 
 
-def get_house_info(house,key):
+def get_house_info(house):
     """Create a Pandas DataFrame with the selected information received from the potterapi"""
     house_id = house_api_id(house,key)
     data = call_api(f'houses/{house_id}',key)
@@ -75,4 +75,4 @@ def get_house_info(house,key):
         }
         dictionary.append(name)
         df = pd.DataFrame(dictionary)
-    return df     
+    return df
