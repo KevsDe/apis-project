@@ -28,10 +28,10 @@ def main():
     #import data frame
     potter = ext.importdataset()
     #extract info from the selected character.
-    print(f'File of {character}')
+    print(f'File on {character}')
     print(ext.character_selection(character))
     #extract info from the selected house.
-    print(f'Information of {house}')
+    print(f'Information of {house} house')
     print(apif.get_house_info(house))
     #extract rate 
     print(ext.ratio(house))
