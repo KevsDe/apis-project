@@ -1,4 +1,4 @@
-![title](banner.jpeg)
+![img](https://github.com/KevsDe/apis-project/blob/master/Input/banner.jpeg?raw=true)
 
 # Objective of this project: getting and shaping information in order to return results related to the user input parameters.
 
