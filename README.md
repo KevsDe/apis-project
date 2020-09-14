@@ -1,4 +1,4 @@
-![](banner.jpeg)
+![title](banner.jpeg)
 
 # Objective of this project: getting and shaping information in order to return results related to the user input parameters.
 
