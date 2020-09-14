@@ -1,5 +1,7 @@
 import requests
 import pandas as pd 
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 def probability_faction (house_name,faction):
     potter = pd.read_csv('Output/potter.csv',encoding='latin1')
@@ -111,3 +113,16 @@ def gender_test (gb):
             return gb
     except Exception:
             raise argparse.ArgumentTypeError(f"{args.gb} is an invalid input")       
+
+
+def ccountplot (data,column, pal="Set2"):
+    """Create a seaborn count plot, 2 parameters, colum and palette set (optional, default 2)"""
+    ax = sns.countplot(x=column, data=data, palette=pal)
+    plt.title(f'Number of {column} in the sample')
+    plt.savefig("grafico_faction")
+
+
+def barplot (data,faction):
+    ax = sns.barplot(x=faction, y="House", data=data)
+    plt.title(f'Relationship between being {faction} and the house')
+    plt.savefig("barplot")

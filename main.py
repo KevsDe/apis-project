@@ -40,6 +40,10 @@ def main():
     ext.group(potter,'Blood_Status',faction).sum() 
     #probability
     print(ext.probability_faction(house,faction))
+    #plots
+    ext.ccountplot(potter,faction)
+    ext.barplot(potter,faction)
+
     
 
 
