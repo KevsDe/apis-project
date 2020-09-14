@@ -15,7 +15,7 @@ def character_selection(character_name):
     return potter_t[character_name]
 
 
-def ratio(house_name='Slytherin'):
+def ratio(house_name):
     """This function is used to calculate a ratio based in three parameters data frame, column and the attribute of the column, the columna and categoria parameters should be a string"""
     potter = pd.read_csv('Output/potter.csv',encoding='latin1')
     potter=potter.query("House != 'Unknown'")
@@ -60,13 +60,27 @@ def correct_house(house):
         if house in valid_houses:
             return house
     except Exception:
-            raise argparse.ArgumentTypeError(f"{args.house} is an invalid name")
+            raise argparse.ArgumentTypeError(f"{args.house} is an invalid house")
 
 def correct_faction(faction):
     """Input validation"""
     valid_factions = ['Dumbledores_Army','Death_Eater','Ministry_Of_Magic','Order_Of_The_Phoenix']
     try:
-        if house in valid_factions:
+        if faction in valid_factions:
             return faction
     except Exception:
-            raise argparse.ArgumentTypeError(f"{args.faction} is an invalid name")
+            raise argparse.ArgumentTypeError(f"{args.faction} is an invalid faction")
+
+
+def gender_check(gender):
+    """Input validation"""
+    gender_t = ['Male', 'Female','Unknown']
+    try:
+        if gender in gender_t:
+            return gender
+    except Exception:
+            raise argparse.ArgumentTypeError(f"{args.gender} is an invalid input")
+
+
+
+        

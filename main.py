@@ -10,6 +10,8 @@ def main():
     parser.add_argument('-c','--character', type = str, metavar='', help = 'Select a character from Harry Potter' )
     parser.add_argument('-o','--house', type = str, metavar='', help = 'Select a house from Harry Potter' )
     parser.add_argument('-f','--faction', type = str, metavar='', help = 'Select a faction from Harry Potter')
+    parser.add_argument('-g','--gender', type = str, metavar='', help = 'Select the gender')
+
     args = parser.parse_args()
 
 
@@ -19,14 +21,24 @@ def main():
     house = args.house
     ext.correct_name(args.faction)
     faction = args.faction
-
+    ext.gender_check(args.gender)
+    gender = args.gender
     print(args)
-    #load dataset.
+
+    #import data frame
     potter = ext.importdataset()
     #extract info from the selected character.
-    character_bio = ext.character_selection(character)
+    ext.character_selection(character)
     #extract info from the selected house.
-    house = (apif.get_house_info(house))
+    apif.get_house_info(house)
+    #extract rate 
+    ext.ratio(house)
+
+    #group_by
+    ext.group(potter,'House',faction).sum()
+    print(ext.group(potter,'Blood_Status',faction).sum())
+    
+
 
     
 
