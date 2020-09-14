@@ -1,6 +1,6 @@
 
 import requests  #Si no llamaba aquí a requests no funcionaba la función, decía que no estaba definida
-
+import pandas as pd 
 def call_api(endp,key):
     """This function perform a call to the Potterapi, receive 1 value endp, the endpoint from the api for further information visit https://www.potterapi.com/"""
     base='https://www.potterapi.com/v1/'
@@ -40,3 +40,31 @@ def api_extraction(data):
              }
             dictionary.append(name)
     return dictionary 
+
+
+def house_api_id (house,key):
+        """Get the house _id from the potterapi, accepted values Gryffindor, Ravenclaw , Slytherin, Hufflepuff"""
+        data = call_api('houses',key)
+        list_houses=['Gryffindor','Ravenclaw','Slytherin','Hufflepuff']
+        house_idx = list_houses.index(house)
+        return (data[house_idx].get('_id'))
+
+
+def get_house_info(house,key):
+    """Create a Pandas DataFrame with the selected information received from the potterapi"""
+    house_id = house_api_id(house,key)
+    data = call_api(f'houses/{house_id}',key)
+ 
+    dictionary=[]
+    for x in range(0,len(data)):
+        name={'name':data[x]['name'],
+        'Mascot':data[x]['mascot'],
+        'Head_Of_House':data[x]['headOfHouse'],
+        'House_Ghost':data[x]['houseGhost'],
+        'Founder':data[x]['founder'],
+        'Values':data[x]['values'],
+        'Colors':data[x]['colors']
+        }
+        dictionary.append(name)
+        df = pd.DataFrame(dictionary)
+    return df     
