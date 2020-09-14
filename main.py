@@ -21,7 +21,7 @@ def main():
     house = args.house
     ext.correct_name(args.faction)
     faction = args.faction
-    ext.gender_check(args.gender)
+    #ext.gender_test(args.gender)
     gender = args.gender
     print(args)
 
@@ -33,10 +33,13 @@ def main():
     apif.get_house_info(house)
     #extract rate 
     ext.ratio(house)
+    ext.ratio_g(gender)
 
     #group_by
     ext.group(potter,'House',faction).sum()
-    print(ext.group(potter,'Blood_Status',faction).sum())
+    ext.group(potter,'Blood_Status',faction).sum() 
+    #probability
+    print(ext.probability_faction(house,faction))
     
 
 

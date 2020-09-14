@@ -1,6 +1,26 @@
 import requests
 import pandas as pd 
 
+def probability_faction (house_name,faction):
+    potter = pd.read_csv('Output/potter.csv',encoding='latin1')
+    potter_sample = potter.value_counts().sum()
+    potter_faction = potter.query(f'{faction}' '==' "True").value_counts().sum()
+    
+    if house_name == 'Gryffindor':
+        potter_house = potter.query("House" '==' "'Gryffindor'").value_counts().sum()
+    elif house_name == 'Slytherin':
+        potter_house = potter.query("House" '==' "'Slytherin'").value_counts().sum()
+    elif house_name == 'Ravenclaw':
+        potter_house = potter.query("House" '==' "'Ravenclaw'").value_counts().sum()
+    elif house_name == 'Hufflepuff':
+        potter_house = potter.query("House" '==' "'Hufflepuff'").value_counts().sum()
+    
+    prob = (potter_house/potter_sample) * (potter_faction/potter_sample)
+    
+    return f"The probability of being {house_name} and {faction} is {prob}"
+
+
+
 def importdataset():
     """Import a given dataset"""
     potter = pd.read_csv(f'Output/potter.csv',encoding='latin1')
@@ -27,6 +47,16 @@ def ratio(house_name):
     ratio=(p1/p2)*100
     return f'The ratio of {house_name} students in Hogwarts School of Witchcraft and Wizardry is {ratio:.2f}'
 
+def ratio_g(gender):
+    """This function is used to calculate a ratio based in three parameters data frame, column and the attribute of the column, the columna and categoria parameters should be a string"""
+    potter = pd.read_csv('Output/potter.csv',encoding='latin1')
+    a=potter[potter['Gender']==gender]
+    b=potter['Gender']
+
+    p1=len(a)
+    p2=len(b)
+    ratio=(p1/p2)*100
+    return f'The ratio of {gender} in the Harry Potter universe is {ratio:.2f}'
 
 def group(data, columna1, columna2):
     """Simple group by function, that received three parameters dataframe and two columns"""
@@ -72,15 +102,12 @@ def correct_faction(faction):
             raise argparse.ArgumentTypeError(f"{args.faction} is an invalid faction")
 
 
-def gender_check(gender):
+
+def gender_test (gb):
     """Input validation"""
-    gender_t = ['Male', 'Female','Unknown']
+    g_b = ['Male','Fermale','Unknown']
     try:
-        if gender in gender_t:
-            return gender
+        if gb in g_b:
+            return gb
     except Exception:
-            raise argparse.ArgumentTypeError(f"{args.gender} is an invalid input")
-
-
-
-        
+            raise argparse.ArgumentTypeError(f"{args.gb} is an invalid input")       
