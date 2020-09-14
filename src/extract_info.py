@@ -19,7 +19,7 @@ def probability_faction (house_name,faction):
     
     prob = (potter_house/potter_sample) * (potter_faction/potter_sample)
     
-    return f"The probability of being {house_name} and {faction} is {prob}"
+    return f"The probability of being {house_name} and {faction} in the sample is {prob:.2f}%"
 
 
 
@@ -47,7 +47,7 @@ def ratio(house_name):
     p1=len(a)
     p2=len(b)
     ratio=(p1/p2)*100
-    return f'The ratio of {house_name} students in Hogwarts School of Witchcraft and Wizardry is {ratio:.2f}'
+    return f'The ratio of {house_name} students in Hogwarts School of Witchcraft and Wizardry in the sample is {ratio:.2f}%'
 
 def ratio_g(gender):
     """This function is used to calculate a ratio based in three parameters data frame, column and the attribute of the column, the columna and categoria parameters should be a string"""
@@ -58,7 +58,7 @@ def ratio_g(gender):
     p1=len(a)
     p2=len(b)
     ratio=(p1/p2)*100
-    return f'The ratio of {gender} in the Harry Potter universe is {ratio:.2f}'
+    return f'The ratio of {gender} gender in the sample of the Harry Potter universe is {ratio:.2f}%'
 
 def group(data, columna1, columna2):
     """Simple group by function, that received three parameters dataframe and two columns"""
@@ -126,3 +126,6 @@ def barplot (data,faction):
     ax = sns.barplot(x=faction, y="House", data=data)
     plt.title(f'Relationship between being {faction} and the house')
     plt.savefig("barplot")
+
+
+    

@@ -21,36 +21,31 @@ def main():
     house = args.house
     ext.correct_name(args.faction)
     faction = args.faction
-    #ext.gender_test(args.gender)
+    ext.gender_test(args.gender)
     gender = args.gender
     print(args)
 
     #import data frame
     potter = ext.importdataset()
     #extract info from the selected character.
-    ext.character_selection(character)
+    print(f'File of {character}')
+    print(ext.character_selection(character))
     #extract info from the selected house.
-    apif.get_house_info(house)
+    print(f'Information of {house}')
+    print(apif.get_house_info(house))
     #extract rate 
-    ext.ratio(house)
-    ext.ratio_g(gender)
-
-    #group_by
-    ext.group(potter,'House',faction).sum()
-    ext.group(potter,'Blood_Status',faction).sum() 
+    print(ext.ratio(house))
+    print(ext.ratio_g(gender))
     #probability
     print(ext.probability_faction(house,faction))
+    #group_by
+    print(f'Number of current or former Hogwarts School of Witchcraft and Wizardry students in the sample that are {faction}')
+    print(ext.group(potter,'House',faction).sum())
+    print(f'Number of {faction} in the sample based on blood status')
+    print(ext.group(potter,'Blood_Status',faction).sum())
     #plots
     ext.ccountplot(potter,faction)
     ext.barplot(potter,faction)
-
-    
-
-
-    
-
- 
-
 
 if __name__ == '__main__' :
     main()

@@ -75,4 +75,4 @@ def get_house_info(house):
         }
         dictionary.append(name)
         df = pd.DataFrame(dictionary)
-    return df
+    return df.T
