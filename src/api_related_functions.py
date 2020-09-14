@@ -1,6 +1,14 @@
 
 import requests  #Si no llamaba aquí a requests no funcionaba la función, decía que no estaba definida
 import pandas as pd 
+import numpy as np
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+key = os.getenv("Potter_api_key")
+
+
 def call_api(endp,key):
     """This function perform a call to the Potterapi, receive 1 value endp, the endpoint from the api for further information visit https://www.potterapi.com/"""
     base='https://www.potterapi.com/v1/'

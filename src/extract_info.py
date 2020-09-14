@@ -1,5 +1,11 @@
-import requests
+import requests  #Si no llamaba aquí a requests no funcionaba la función, decía que no estaba definida
 import pandas as pd 
+import numpy as np
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+key = os.getenv("Potter_api_key")
 
 def importdataset(name):
     """Import a given dataset"""
@@ -32,3 +38,13 @@ def group(data, columna1, columna2):
     """Simple group by function, that received three parameters dataframe and two columns"""
     gp=data.groupby(columna1)[columna2]
     return gp
+
+
+def emptyspaces(name):
+    """Substitute a '-' for ' ' """
+    if '_' in name:
+        word= name.replace('_',' ')
+        return word
+    else: 
+        return name
+    
