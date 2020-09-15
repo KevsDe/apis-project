@@ -29,15 +29,15 @@ def main():
     potter = ext.importdataset()
     #extract info from the selected character.
     print(f'File on {character}')
-    print(ext.character_selection(character))
+    print(ext.character_selection(potter,character))
     #extract info from the selected house.
     print(f'Information of {house} house')
     print(apif.get_house_info(house))
     #extract rate 
-    print(ext.ratio(house))
-    print(ext.ratio_g(gender))
+    print(ext.ratio(potter,house))
+    print(ext.ratio_g(potter,gender))
     #probability
-    print(ext.probability_faction(house,faction))
+    print(ext.probability_faction(potter,house,faction))
     #group_by
     print(f'Number of current or former Hogwarts School of Witchcraft and Wizardry students in the sample that are {faction}')
     print(ext.group(potter,'House',faction).sum())

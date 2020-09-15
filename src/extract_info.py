@@ -3,19 +3,18 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-def probability_faction (house_name,faction):
-    potter = pd.read_csv('Output/potter.csv',encoding='latin1')
-    potter_sample = potter.value_counts().sum()
-    potter_faction = potter.query(f'{faction}' '==' "True").value_counts().sum()
+def probability_faction (data,house_name,faction):
+    potter_sample = data.value_counts().sum()
+    potter_faction = data.query(f'{faction}' '==' "True").value_counts().sum()
     
     if house_name == 'Gryffindor':
-        potter_house = potter.query("House" '==' "'Gryffindor'").value_counts().sum()
+        potter_house = data.query("House" '==' "'Gryffindor'").value_counts().sum()
     elif house_name == 'Slytherin':
-        potter_house = potter.query("House" '==' "'Slytherin'").value_counts().sum()
+        potter_house = data.query("House" '==' "'Slytherin'").value_counts().sum()
     elif house_name == 'Ravenclaw':
-        potter_house = potter.query("House" '==' "'Ravenclaw'").value_counts().sum()
+        potter_house = data.query("House" '==' "'Ravenclaw'").value_counts().sum()
     elif house_name == 'Hufflepuff':
-        potter_house = potter.query("House" '==' "'Hufflepuff'").value_counts().sum()
+        potter_house = data.query("House" '==' "'Hufflepuff'").value_counts().sum()
     
     prob = (potter_house/potter_sample) * (potter_faction/potter_sample)
     
@@ -29,31 +28,28 @@ def importdataset():
     return potter
 
 
-def character_selection(character_name):
+def character_selection(data,character_name):
     """This function allows you to select available Harry Potter´s character in the potter.csv data set and display the information"""
-    potter = pd.read_csv('Output/potter.csv',encoding='latin1')
-    potter = potter.set_index('Name', drop=False)
-    potter_t = potter.T
+    data = data.set_index('Name', drop=False)
+    potter_t = data.T
     return potter_t[character_name]
 
-
-def ratio(house_name):
+def ratio(data, house_name):
     """This function is used to calculate a ratio based in three parameters data frame, column and the attribute of the column, the columna and categoria parameters should be a string"""
-    potter = pd.read_csv('Output/potter.csv',encoding='latin1')
-    potter=potter.query("House != 'Unknown'")
-    a=potter[potter['House']==house_name]
-    b=potter['House']
+
+    data=data.query("House != 'Unknown'")
+    a=data[data['House']==house_name]
+    b=data['House']
 
     p1=len(a)
     p2=len(b)
     ratio=(p1/p2)*100
     return f'The ratio of {house_name} students in Hogwarts School of Witchcraft and Wizardry in the sample is {ratio:.2f}%'
 
-def ratio_g(gender):
+def ratio_g(data,gender):
     """This function is used to calculate a ratio based in three parameters data frame, column and the attribute of the column, the columna and categoria parameters should be a string"""
-    potter = pd.read_csv('Output/potter.csv',encoding='latin1')
-    a=potter[potter['Gender']==gender]
-    b=potter['Gender']
+    a=data[data['Gender']==gender]
+    b=data['Gender']
 
     p1=len(a)
     p2=len(b)
@@ -66,13 +62,6 @@ def group(data, columna1, columna2):
     return gp
 
 
-def emptyspaces(name):
-    """Substitute a '-' for ' ' """
-    if '_' in name:
-        word= name.replace('_',' ')
-        return word
-    else: 
-        return name
     
 
 def correct_name(character):
