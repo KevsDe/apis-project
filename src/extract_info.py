@@ -6,16 +6,7 @@ import matplotlib.pyplot as plt
 def probability_faction (data,house_name,faction):
     potter_sample = data.value_counts().sum()
     potter_faction = data.query(f'{faction}' '==' "True").value_counts().sum()
-    
-    if house_name == 'Gryffindor':
-        potter_house = data.query("House" '==' "'Gryffindor'").value_counts().sum()
-    elif house_name == 'Slytherin':
-        potter_house = data.query("House" '==' "'Slytherin'").value_counts().sum()
-    elif house_name == 'Ravenclaw':
-        potter_house = data.query("House" '==' "'Ravenclaw'").value_counts().sum()
-    elif house_name == 'Hufflepuff':
-        potter_house = data.query("House" '==' "'Hufflepuff'").value_counts().sum()
-    
+    potter_house = data[(data["House"]== f'{house_name}')].value_counts().sum()
     prob = (potter_house/potter_sample) * (potter_faction/potter_sample)
     
     return f"The probability of being {house_name} and {faction} in the sample is {prob:.2f}%"
